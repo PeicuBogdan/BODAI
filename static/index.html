@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BODAI — Chat</title>
+<meta name="description" content="BODAI - chat cu AI personal, rapid și sigur." />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" href="/favicon.ico" />
+</head>
+<body class="theme-dark">
+<noscript>
+  <div style="background:#222;color:#fff;padding:12px;text-align:center;">
+    Pentru funcționare completă, activează JavaScript în browser.
+  </div>
+</noscript>
+<div id="app">
+<header>
+  <aside class="topbar" aria-label="Navigare principală">
+    <div class="brand">
+      <div class="logo">🤖</div>
+      <div class="brand-text">
+        <strong>BODAI</strong>
+        <span class="muted">personal AI</span>
+      </div>
+    </div>
+    <nav class="topbar-actions" aria-label="Acțiuni rapide">
+      <button id="toggleTheme" class="btn ghost" aria-label="Schimba tema">🌓</button>
+      <a class="btn ghost" href="/profile.html">Profil</a>
+      <a class="btn primary" href="#" id="clearChatBtn">Curata chat</a>
+    </nav>
+  </aside>
+</header>
+
+<main class="chat-shell" aria-label="Zona principală chat">
+  <div id="chat" class="chat-stream" aria-live="polite" aria-label="Mesaje chat"></div>
+  <form id="composer" class="composer" autocomplete="off" aria-label="Trimite mesaj">
+    <div id="typing" class="typing hidden" aria-hidden="true">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <input id="userInput" type="text" class="input" placeholder="Scrie un mesaj..." aria-label="Input mesaj" />
+    <button id="sendBtn" type="submit" class="btn primary">Trimite</button>
+  </form>
+</main>
+
+<footer>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+</footer>
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>

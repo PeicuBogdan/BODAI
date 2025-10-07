@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BODAI — Profil</title>
+<meta name="description" content="Setări și profil utilizator pentru BODAI." />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body class="theme-dark">
+<noscript>
+  <div style="background:#222;color:#fff;padding:12px;text-align:center;">
+    Pentru funcționare completă, activează JavaScript în browser.
+  </div>
+</noscript>
+<div class="profile-wrap">
+<header class="profile-header" aria-label="Navigare profil">
+<a class="btn ghost" href="/">← Inapoi la chat</a>
+<h1>Profil & Setari</h1>
+</header>
+
+<section class="card grid-2" aria-label="Setări utilizator">
+<div>
+<h2>Utilizator</h2>
+<div class="kv">
+<span class="k">Nume</span>
+<span class="v"><input id="userName" class="input" placeholder="Numele tau" aria-label="Nume utilizator" /></span>
+</div>
+<div class="kv">
+<span class="k">Tema</span>
+<span class="v">
+<select id="themeSelect" class="input" aria-label="Selectează tema">
+<option value="auto">Auto</option>
+<option value="light">Light</option>
+<option value="dark" selected>Dark</option>
+</select>
+</span>
+</div>
+<div class="kv">
+<span class="k">Memorie</span>
+<span class="v">
+<button class="btn" id="openMemoryBtn" aria-label="Deschide memorie">Deschide memorie</button>
+<button class="btn danger" id="wipeMemoryBtn" aria-label="Sterge memorie">Sterge memorie (demo)</button>
+</span>
+</div>
+</div>
+<div>
+<h2>Despre BODAI</h2>
+<ul class="list">
+<li><strong>Versiune UI:</strong> 1.0 (premium skin)</li>
+<li><strong>Backend:</strong> FastAPI pe 8000</li>
+<li><strong>Persistenta:</strong> SQLite + backup cron</li>
+</ul>
+<div class="note">Aceasta pagina gestioneaza doar preferintele locale UI. Functionalitatile backend raman neschimbate.</div>
+</div>
+</section>
+
+<footer class="profile-footer" aria-label="Acțiuni profil">
+<button class="btn primary" id="saveProfile" aria-label="Salvează profil">Salveaza</button>
+<span id="saveStatus" class="muted"></span>
+</footer>
+</div>
+
+<script>
+// Load saved prefs
+const nameEl = document.getElementById('userName');
+const themeEl = document.getElementById('themeSelect');
+const saveBtn = document.getElementById('saveProfile');
+const statusEl = document.getElementById('saveStatus');
+
+function applyTheme(t){
+const b = document.body;
+b.classList.remove('theme-light','theme-dark');
+if(t==='light') b.classList.add('theme-light');
+else b.classList.add('theme-dark');
+}
+
+// init
+(function(){
+const prefs = JSON.parse(localStorage.getItem('bodai:prefs')||'{}');
+if(prefs.name) nameEl.value = prefs.name;
+if(prefs.theme){ themeEl.value = prefs.theme; applyTheme(prefs.theme); }
+})();
+
+saveBtn.onclick = () => {
+const prefs = JSON.parse(localStorage.getItem('bodai:prefs')||'{}');
+prefs.name = nameEl.value?.trim();
+prefs.theme = themeEl.value;
+localStorage.setItem('bodai:prefs', JSON.stringify(prefs));
+applyTheme(prefs.theme);
+statusEl.textContent = 'Salvat!';
+setTimeout(()=> statusEl.textContent = '', 1500);
+};
+
+// demo memory buttons
+document.getElementById('openMemoryBtn').onclick = () => {
+window.open('/memory', '_blank'); // presupune GET /memory list
+};
+document.getElementById('wipeMemoryBtn').onclick = () => {
+alert('Doar demo UI. Stergerea efectiva se face prin API dedicat.');
+};
+</script>
+</body>
+</html>

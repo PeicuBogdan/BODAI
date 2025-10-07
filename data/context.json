@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "text": "salut"
+  },
+  {
+    "role": "bot",
+    "text": "Salut!"
+  },
+  {
+    "role": "user",
+    "text": "ce faci?"
+  },
+  {
+    "role": "bot",
+    "text": "Sunt bine, tu ce faci?"
+  },
+  {
+    "role": "user",
+    "text": "bine"
+  },
+  {
+    "role": "bot",
+    "text": "Mă bucur să aud asta! Poate mai târziu te bucuri și de puțin îmi place cafeaua locuiesc în Brașov sunt obosit ce știi despre mine? 😄"
+  },
+  {
+    "role": "user",
+    "text": "poate"
+  },
+  {
+    "role": "bot",
+    "text": "Îmi amintesc că ai spus 'Azi am mancat paste'. Ți-a plăcut?"
+  },
+  {
+    "role": "user",
+    "text": "da"
+  },
+  {
+    "role": "bot",
+    "text": "Nu cred că te refereai la asta. Poți detalia puțin mai clar?"
+  }
+]
